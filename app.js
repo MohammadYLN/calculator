@@ -1,7 +1,6 @@
 const defultResult = 0;
-const currentResult = 0;
-let logEntries = [] ;
-
+let currentResult = 0;
+const logEntries = [] ;
 function parseInput(){
     return parseInt(userInput.value);
 }
@@ -15,15 +14,15 @@ function createAndWriteOutput(operator,beforeResult,calcNum){
 }
 
 function calculateResult(calculationType){
-    const enteredNum = parseInt();
+    const enteredNum = parseInput();
     const initialResult = currentResult;
     let mathOperator;
-    if (calculationType !== 'AND' && calculationType !== 'DIVIDE'
+    if (calculationType !== 'ADD' && calculationType !== 'DIVIDE'
         && calculationType !== 'SUBTRACT' && calculationType !== 'MULTIPLY'
         || !enteredNum){
             return;
         }
-        if (calculationType === 'AND'){
+        if (calculationType === 'ADD'){
             currentResult += enteredNum;
             mathOperator = "+";
         }
@@ -39,6 +38,8 @@ function calculateResult(calculationType){
             currentResult *= enteredNum;
             mathOperator = "*";
         }
+        createAndWriteOutput(mathOperator, initialResult, enteredNum);
+    createAndPushLog(mathOperator, enteredNum, initialResult)
 }
 
 function createAndPushLog(operator,number,prevResult){
